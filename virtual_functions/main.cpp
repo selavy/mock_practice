@@ -10,13 +10,15 @@
  *      + Possibly slow? (depends on if link-time optimization inlines)
  */
 #include "impl.h"
+#include "user.h"
 #include <cstdlib>
 #include <ctime>
 
 int main(int argc, char **argv)
 {
     srand(time(0));
-    Interface* i = new Impl();
-    i->foo();
+    Impl i;
+    User user(i);
+    user.execute();
     return 0;
 }
